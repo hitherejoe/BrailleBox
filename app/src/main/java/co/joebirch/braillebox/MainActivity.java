@@ -4,12 +4,25 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.nearby.Nearby;
+import com.google.android.gms.nearby.connection.AppIdentifier;
+import com.google.android.gms.nearby.connection.AppMetadata;
+import com.google.android.gms.nearby.connection.Connections;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManagerService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener,
+        Connections.ConnectionRequestListener,
+        Connections.MessageListener,
+        Connections.EndpointDiscoveryListener {
 
     private Gpio firstSolenoidGpio;
     private Gpio secondSolenoidGpio;
@@ -18,9 +31,17 @@ public class MainActivity extends Activity {
     private Gpio fifthSolenoidGpio;
     private Gpio sixthSolenoidGpio;
 
+    private GoogleApiClient googleApiClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Nearby.CONNECTIONS_API)
+                .build();
 
         PeripheralManagerService pioService = new PeripheralManagerService();
         try {
@@ -36,20 +57,25 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        googleApiClient.connect();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (googleApiClient != null && googleApiClient.isConnected()) {
+            googleApiClient.disconnect();
+        }
+    }
+
+    @Override
     protected void onDestroy(){
         super.onDestroy();
 
-        /*
-        if (mLedGpio != null) {
-            try {
-                mLedGpio.close();
-            } catch (IOException e) {
-                Log.e(TAG, "Error closing LED GPIO", e);
-            } finally{
-                mLedGpio = null;
-            }
-            mLedGpio = null;
-        }
-        */
+       // close gpio connections
     }
+
+
 }

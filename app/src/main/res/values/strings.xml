@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BrailleBox</string>
+    <string name="service_id">co.joebirch.braillebox</string>
 </resources>

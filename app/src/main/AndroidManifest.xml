@@ -19,6 +19,10 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <meta-data android:name="com.google.android.gms.nearby.connection.SERVICE_ID"
+            android:value="@string/service_id" />
+        <activity>
     </application>
 
 

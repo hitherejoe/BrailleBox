@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="braille_keys">
+
+    </string-array>
+
+    private static final int SEQUENCE_A = 100000;
+    private static final int SEQUENCE_B = 101000;
+    private static final int SEQUENCE_C = 110000;
+    private static final int SEQUENCE_D = 110100;
+    private static final int SEQUENCE_E = 100100;
+    private static final int SEQUENCE_F = 111000;
+    private static final int SEQUENCE_G = 111100;
+    private static final int SEQUENCE_H = 101100;
+    private static final int SEQUENCE_I = 010100;
+    private static final int SEQUENCE_J = 011100;
+    private static final int SEQUENCE_K = 100010;
+    private static final int SEQUENCE_L = 101010;
+    private static final int SEQUENCE_M = 110010;
+    private static final int SEQUENCE_N = 110110;
+    private static final int SEQUENCE_O = 100110;
+    private static final int SEQUENCE_P = 111010;
+    private static final int SEQUENCE_Q = 111110;
+    private static final int SEQUENCE_R = 101110;
+    private static final int SEQUENCE_S = 011010;
+    private static final int SEQUENCE_T = 011110;
+    private static final int SEQUENCE_U = 100011;
+    private static final int SEQUENCE_V = 101011;
+    private static final int SEQUENCE_W = 011101;
+    private static final int SEQUENCE_X = 110011;
+    private static final int SEQUENCE_Y = 110111;
+    private static final int SEQUENCE_Z = 100111;
+
+    <integer-array name="braille_values">
+
+    </integer-array>
+
+</resources>
