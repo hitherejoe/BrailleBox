@@ -5,24 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.nearby.Nearby;
-import com.google.android.gms.nearby.connection.AppIdentifier;
-import com.google.android.gms.nearby.connection.AppMetadata;
-import com.google.android.gms.nearby.connection.Connections;
 import com.google.android.things.pio.Gpio;
 import com.google.android.things.pio.PeripheralManagerService;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends Activity implements
-        GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,
-        Connections.ConnectionRequestListener,
-        Connections.MessageListener,
-        Connections.EndpointDiscoveryListener {
+public class MainActivity extends Activity  {
 
     private Gpio firstSolenoidGpio;
     private Gpio secondSolenoidGpio;
@@ -37,12 +25,6 @@ public class MainActivity extends Activity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        googleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Nearby.CONNECTIONS_API)
-                .build();
-
         PeripheralManagerService pioService = new PeripheralManagerService();
         try {
             firstSolenoidGpio = pioService.openGpio(BoardDefaults.getFirstSolenoidGpioPin());
@@ -53,20 +35,6 @@ public class MainActivity extends Activity implements
             sixthSolenoidGpio = pioService.openGpio(BoardDefaults.getSixthSolenoidGpioPin());
         } catch (IOException e) {
             Log.e("Main", "Error configuring GPIO pins", e);
-        }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        googleApiClient.connect();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (googleApiClient != null && googleApiClient.isConnected()) {
-            googleApiClient.disconnect();
         }
     }
 

@@ -9,8 +9,8 @@ public class BrailleMapper {
 
     }
 
-    private List<Integer> mapFromString(String text) {
-        List<Integer> integer = new ArrayList<>();
+    public List<String> mapFromString(String text) {
+        List<String> integer = new ArrayList<>();
         for (int i = 0; i < text.length(); i++) {
             integer.add(Braille.fromKey(Character.toLowerCase(text.charAt(i))).getValue());
         }
