@@ -4,8 +4,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.concurrent.Callable;
 
@@ -48,13 +50,15 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void getArticleSucceedsAndReturnsSequence() {
+    public void getArticleShowsSequenceAfterResettingSolenoids() {
         String sequence = TestDataFactory.randomUuid();
         stubDataManagerGetArticle(Observable.just(sequence));
 
         mainPresenter.fetchArticle(TestDataFactory.randomInt());
 
-        verify(mockMainMvpView).showSequence(sequence);
+        InOrder inOrder = Mockito.inOrder(mockMainMvpView);
+        inOrder.verify(mockMainMvpView).resetSolenoids();
+        inOrder.verify(mockMainMvpView).showSequence(sequence);
     }
 
     @Test

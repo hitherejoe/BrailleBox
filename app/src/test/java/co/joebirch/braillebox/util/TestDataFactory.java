@@ -1,5 +1,7 @@
 package co.joebirch.braillebox.util;
 
+import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,6 +43,14 @@ public class TestDataFactory {
         newsResponse.source = randomUuid();
         newsResponse.articles = makeArticleModelsList(4);
         return newsResponse;
+    }
+
+    public static List<String> makeBrailleList(int count) {
+        List<String> braille = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            braille.add(randomUuid());
+        }
+        return braille;
     }
 
 }

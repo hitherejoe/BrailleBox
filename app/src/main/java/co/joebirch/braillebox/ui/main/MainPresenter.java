@@ -24,10 +24,12 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
     @Override
     public void detachView() {
         super.detachView();
-        if (articleDisposable != null) articleDisposable.dispose();
+        cancelCurrentSubscription();
     }
 
     void fetchArticle(int delay) {
+        cancelCurrentSubscription();
+        getMvpView().resetSolenoids();
         dataManager.getArticle(delay)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -52,6 +54,10 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
 
                     }
                 });
+    }
+
+    private void cancelCurrentSubscription() {
+        if (articleDisposable != null) articleDisposable.dispose();
     }
 
 }
