@@ -6,6 +6,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.joebirch.braillebox.data.Braille;
+import co.joebirch.braillebox.util.BrailleMapper;
+
 import static junit.framework.Assert.assertEquals;
 
 public class BrailleMapperTest {

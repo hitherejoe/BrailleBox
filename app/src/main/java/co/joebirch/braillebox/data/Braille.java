@@ -1,4 +1,4 @@
-package co.joebirch.braillebox;
+package co.joebirch.braillebox.data;
 
 public enum Braille {
 
@@ -10,7 +10,7 @@ public enum Braille {
     FOUR('4', "110100"), FIVE('5', "100100"), SIX('6', "111000"), SEVEN('7', "111100"), EIGHT('8', "101100"),
     NINE('9', "010100"), ZERO('0', "011100"), PERIOD('.', "001101"), COMMA(',', "001000"),
     QUESTION_MARK('?', "001011"), EXCLAMATION_MARK('!', "001110"), COLON(':', "001100"),
-    SEMICOLON(';', "001010"), HASHTAG('#', "010111"), HYPHEN('-', "000011");
+    SEMICOLON(';', "001010"), HASHTAG('#', "010111"), HYPHEN('-', "000011"), SPACE(' ', "000000");
 
     private final Character key;
     private final String value;

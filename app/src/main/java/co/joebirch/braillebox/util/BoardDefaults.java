@@ -1,4 +1,4 @@
-package co.joebirch.braillebox;
+package co.joebirch.braillebox.util;
 
 import android.os.Build;
 
@@ -6,7 +6,7 @@ import com.google.android.things.pio.PeripheralManagerService;
 
 import java.util.List;
 
-public class BoardDefaults {
+class BoardDefaults {
 
     private static final String DEVICE_EDISON_ARDUINO = "edison_arduino";
     private static final String DEVICE_EDISON = "edison";
@@ -14,7 +14,7 @@ public class BoardDefaults {
     private static final String DEVICE_NXP = "imx6ul";
     private static String sBoardVariant = "";
 
-    public static String getFirstSolenoidGpioPin() {
+    static String getFirstSolenoidGpioPin() {
         switch (getBoardVariant()) {
             case DEVICE_EDISON_ARDUINO:
                 return "";
@@ -29,7 +29,7 @@ public class BoardDefaults {
         }
     }
 
-    public static String getSecondSolenoidGpioPin() {
+    static String getSecondSolenoidGpioPin() {
         switch (getBoardVariant()) {
             case DEVICE_EDISON_ARDUINO:
                 return "";
@@ -44,7 +44,7 @@ public class BoardDefaults {
         }
     }
 
-    public static String getThirdSolenoidGpioPin() {
+    static String getThirdSolenoidGpioPin() {
         switch (getBoardVariant()) {
             case DEVICE_EDISON_ARDUINO:
                 return "";
@@ -59,7 +59,7 @@ public class BoardDefaults {
         }
     }
 
-    public static String getFourthSolenoidGpioPin() {
+    static String getFourthSolenoidGpioPin() {
         switch (getBoardVariant()) {
             case DEVICE_EDISON_ARDUINO:
                 return "";
@@ -74,7 +74,7 @@ public class BoardDefaults {
         }
     }
 
-    public static String getFifthSolenoidGpioPin() {
+    static String getFifthSolenoidGpioPin() {
         switch (getBoardVariant()) {
             case DEVICE_EDISON_ARDUINO:
                 return "";
@@ -89,7 +89,7 @@ public class BoardDefaults {
         }
     }
 
-    public static String getSixthSolenoidGpioPin() {
+    static String getSixthSolenoidGpioPin() {
         switch (getBoardVariant()) {
             case DEVICE_EDISON_ARDUINO:
                 return "";
@@ -104,13 +104,25 @@ public class BoardDefaults {
         }
     }
 
-    private static String getBoardVariant() {
-        if (!sBoardVariant.isEmpty()) {
-            return sBoardVariant;
+    static String getPushButtonGpioPin() {
+        switch (getBoardVariant()) {
+            case DEVICE_EDISON_ARDUINO:
+                return "";
+            case DEVICE_EDISON:
+                return "";
+            case DEVICE_RPI3:
+                return "BCM12";
+            case DEVICE_NXP:
+                return "";
+            default:
+                throw new IllegalArgumentException("Unknown device: " + Build.DEVICE);
         }
+    }
+
+    private static String getBoardVariant() {
+        if (!sBoardVariant.isEmpty()) return sBoardVariant;
+
         sBoardVariant = Build.DEVICE;
-        // For the edison check the pin prefix
-        // to always return Edison Breakout pin name when applicable.
         if (sBoardVariant.equals(DEVICE_EDISON)) {
             PeripheralManagerService pioService = new PeripheralManagerService();
             List<String> gpioList = pioService.getGpioList();

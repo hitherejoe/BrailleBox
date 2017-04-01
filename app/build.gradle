@@ -5,11 +5,13 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "co.joebirch.braillebox"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_URL", "\"${apiUrl}\"")
+        buildConfigField("String", "API_KEY", "\"${apiKey}\"")
     }
     buildTypes {
         release {
@@ -20,20 +22,44 @@ android {
 }
 
 dependencies {
+    final RETROFIT_VERSION = '2.2.0'
+    final OKHTTP_VERSION = '3.5.0'
+    final DAGGER_VERSION = '2.4'
     final HAMCREST_VERSION = '1.3'
+
+    def daggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
     def jUnit = "junit:junit:4.12"
+    def mockito = "org.mockito:mockito-core:1.10.19"
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.google.android.gms:play-services-nearby:10.0.1'
+    compile 'com.android.support:appcompat-v7:25.3.0'
 
-    provided 'com.google.android.things:androidthings:0.1-devpreview'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.4'
+
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
+    compile "com.squareup.okhttp3:okhttp:$OKHTTP_VERSION"
+    compile "com.squareup.okhttp3:mockwebserver:$OKHTTP_VERSION"
+    compile "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+
+    compile 'com.jakewharton.timber:timber:4.5.1'
+
+    compile  "com.google.dagger:dagger:$DAGGER_VERSION"
+    provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
+
+    provided 'com.google.android.things:androidthings:0.2-devpreview'
+    compile 'com.google.android.things.contrib:driver-button:0.2'
 
     testCompile jUnit
+    testCompile mockito
     testCompile "org.hamcrest:hamcrest-core:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-library:$HAMCREST_VERSION"
     testCompile "org.hamcrest:hamcrest-integration:$HAMCREST_VERSION"
+
+    annotationProcessor daggerCompiler
 }
