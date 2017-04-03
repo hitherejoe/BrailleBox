@@ -1,4 +1,4 @@
-package co.joebirch.braillebox;
+package co.joebirch.braillebox.util;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.joebirch.braillebox.data.Braille;
-import co.joebirch.braillebox.util.BrailleMapper;
 
 import static junit.framework.Assert.assertEquals;
 

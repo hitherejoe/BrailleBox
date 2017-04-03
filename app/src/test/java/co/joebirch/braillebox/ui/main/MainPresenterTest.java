@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.concurrent.Callable;
 
 import co.joebirch.braillebox.data.DataManager;
-import co.joebirch.braillebox.util.TestDataFactory;
+import co.joebirch.braillebox.test.util.TestDataFactory;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.android.plugins.RxAndroidPlugins;

@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
 import co.joebirch.braillebox.data.model.NewsResponse;
 import co.joebirch.braillebox.data.remote.BrailleBoxService;
 import co.joebirch.braillebox.util.BrailleMapper;
-import co.joebirch.braillebox.util.TestDataFactory;
+import co.joebirch.braillebox.test.util.TestDataFactory;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.android.plugins.RxAndroidPlugins;
@@ -117,7 +117,7 @@ public class DataManagerTest {
     }
 
     private void stubBrailleMapperMapFromSequences(List<String> braille) {
-        when(mockBrailleMapper.mapfromSequences(anyString(), anyString()))
+        when(mockBrailleMapper.mapFromWords(anyString(), anyString()))
                 .thenReturn(braille);
     }
 

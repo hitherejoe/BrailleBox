@@ -14,21 +14,22 @@ public class BrailleMapper {
 
     }
 
-    public List<String> mapfromSequences(String... params) {
+    public List<String> mapFromWords(String... words) {
         List<String> braille = new ArrayList<>();
-        for (int i = 0; i < params.length; i++) {
-            braille.addAll(mapFromString(params[i]));
-            if (i < params.length - 1) braille.add(Braille.SPACE.getValue());
+        for (int i = 0; i < words.length; i++) {
+            braille.addAll(mapFromString(words[i]));
+            if (i < words.length - 1) braille.add(Braille.SPACE.getValue());
         }
         return braille;
     }
 
     public List<String> mapFromString(String text) {
-        List<String> integer = new ArrayList<>();
+        List<String> braille = new ArrayList<>();
         for (int i = 0; i < text.length(); i++) {
-            integer.add(Braille.fromKey(Character.toLowerCase(text.charAt(i))).getValue());
+            braille.add(Braille.fromKey(
+                    Character.toLowerCase(text.charAt(i))).getValue());
         }
-        return integer;
+        return braille;
     }
 
 }

@@ -1,6 +1,4 @@
-package co.joebirch.braillebox.util;
-
-import android.widget.ListView;
+package co.joebirch.braillebox.test.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,22 +20,6 @@ public class TestDataFactory {
         return sRandom.nextInt(200) + Integer.SIZE - 1;
     }
 
-    public static ArticleModel makeArticleModel() {
-        ArticleModel articleModel = new ArticleModel();
-        articleModel.author = randomUuid();
-        articleModel.description = randomUuid();
-        articleModel.title = randomUuid();
-        return articleModel;
-    }
-
-    public static List<ArticleModel> makeArticleModelsList(int count) {
-        List<ArticleModel> articleModels = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            articleModels.add(makeArticleModel());
-        }
-        return articleModels;
-    }
-
     public static NewsResponse makeNewsResponse() {
         NewsResponse newsResponse = new NewsResponse();
         newsResponse.source = randomUuid();
@@ -51,6 +33,22 @@ public class TestDataFactory {
             braille.add(randomUuid());
         }
         return braille;
+    }
+
+    private static ArticleModel makeArticleModel() {
+        ArticleModel articleModel = new ArticleModel();
+        articleModel.author = randomUuid();
+        articleModel.description = randomUuid();
+        articleModel.title = randomUuid();
+        return articleModel;
+    }
+
+    private static List<ArticleModel> makeArticleModelsList(int count) {
+        List<ArticleModel> articleModels = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            articleModels.add(makeArticleModel());
+        }
+        return articleModels;
     }
 
 }

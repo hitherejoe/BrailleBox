@@ -46,7 +46,7 @@ public class DataManager {
                     @Override
                     public ObservableSource<List<String>> apply(ArticleModel articleModel)
                             throws Exception {
-                        return Observable.just(brailleMapper.mapfromSequences(
+                        return Observable.just(brailleMapper.mapFromWords(
                                 articleModel.title, articleModel.description));
                     }
                 })
