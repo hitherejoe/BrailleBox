@@ -12,6 +12,9 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
+import static com.google.android.things.pio.Gpio.ACTIVE_HIGH;
+import static com.google.android.things.pio.Gpio.DIRECTION_OUT_INITIALLY_LOW;
+
 public class GpioHelper {
 
     private List<Gpio> solenoids;
@@ -35,22 +38,24 @@ public class GpioHelper {
     }
 
     public void openSolenoidGpioPins() {
+        solenoids.add(configureGpioPin(BoardDefaults.getFirstSolenoidGpioPin()));
+        solenoids.add(configureGpioPin(BoardDefaults.getSecondSolenoidGpioPin()));
+        solenoids.add(configureGpioPin(BoardDefaults.getThirdSolenoidGpioPin()));
+        solenoids.add(configureGpioPin(BoardDefaults.getFourthSolenoidGpioPin()));
+        solenoids.add(configureGpioPin(BoardDefaults.getFifthSolenoidGpioPin()));
+        solenoids.add(configureGpioPin(BoardDefaults.getSixthSolenoidGpioPin()));
+    }
+
+    private Gpio configureGpioPin(String pin) {
+        Gpio gpioPin = null;
         try {
-            solenoids.add(peripheralManagerService.openGpio(
-                    BoardDefaults.getFirstSolenoidGpioPin()));
-            solenoids.add(peripheralManagerService.openGpio(
-                    BoardDefaults.getSecondSolenoidGpioPin()));
-            solenoids.add(peripheralManagerService.openGpio(
-                    BoardDefaults.getThirdSolenoidGpioPin()));
-            solenoids.add(peripheralManagerService.openGpio(
-                    BoardDefaults.getFourthSolenoidGpioPin()));
-            solenoids.add(peripheralManagerService.openGpio(
-                    BoardDefaults.getFifthSolenoidGpioPin()));
-            solenoids.add(peripheralManagerService.openGpio(
-                    BoardDefaults.getSixthSolenoidGpioPin()));
-        } catch (IOException error) {
-            Timber.e(error, "There was an error configuring GPIO pins");
+            gpioPin = peripheralManagerService.openGpio(pin);
+            gpioPin.setDirection(DIRECTION_OUT_INITIALLY_LOW);
+            gpioPin.setActiveType(ACTIVE_HIGH);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return gpioPin;
     }
 
     public void sendGpioValues(String sequence) {
