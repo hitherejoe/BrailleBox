@@ -1,6 +1,6 @@
 package co.joebirch.braillebox.data;
 
-public enum Source {
+enum Source {
     BBC_NEWS("bbc-news");
 
     private String id;

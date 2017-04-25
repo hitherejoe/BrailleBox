@@ -1,6 +1,6 @@
 package co.joebirch.braillebox.data;
 
-public enum SortBy {
+enum SortBy {
     TOP("top"),
     LATEST("latest"),
     POPULAR("popular");

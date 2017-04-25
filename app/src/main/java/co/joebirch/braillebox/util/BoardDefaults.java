@@ -81,7 +81,7 @@ class BoardDefaults {
             case DEVICE_EDISON:
                 return "";
             case DEVICE_RPI3:
-                return "BCM24";
+                return "BCM16";
             case DEVICE_NXP:
                 return "";
             default:

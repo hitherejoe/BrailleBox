@@ -35,8 +35,8 @@ public class BrailleBoxServiceFactory {
         return makeBrailleBoxService(okHttpClient, makeGson());
     }
 
-    public static BrailleBoxService makeBrailleBoxService(OkHttpClient okHttpClient, Gson gson,
-                                                    HttpUrl url) {
+    private static BrailleBoxService makeBrailleBoxService(OkHttpClient okHttpClient, Gson gson,
+                                                           HttpUrl url) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
                 .client(okHttpClient)
@@ -46,7 +46,7 @@ public class BrailleBoxServiceFactory {
         return retrofit.create(BrailleBoxService.class);
     }
 
-    public static BrailleBoxService makeBrailleBoxService(OkHttpClient okHttpClient, Gson gson) {
+    private static BrailleBoxService makeBrailleBoxService(OkHttpClient okHttpClient, Gson gson) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
                 .client(okHttpClient)
@@ -56,7 +56,7 @@ public class BrailleBoxServiceFactory {
         return retrofit.create(BrailleBoxService.class);
     }
 
-    public static OkHttpClient makeOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
+    private static OkHttpClient makeOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(httpLoggingInterceptor)
                 .addInterceptor(new Interceptor() {
@@ -76,7 +76,7 @@ public class BrailleBoxServiceFactory {
                 .build();
     }
 
-    public static Gson makeGson() {
+    private static Gson makeGson() {
         return new GsonBuilder()
                 .setLenient()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
@@ -84,7 +84,7 @@ public class BrailleBoxServiceFactory {
                 .create();
     }
 
-    public static HttpLoggingInterceptor makeLoggingInterceptor() {
+    private static HttpLoggingInterceptor makeLoggingInterceptor() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY
                 : HttpLoggingInterceptor.Level.NONE);

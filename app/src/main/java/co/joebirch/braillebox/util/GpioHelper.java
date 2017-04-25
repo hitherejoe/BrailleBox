@@ -61,7 +61,7 @@ public class GpioHelper {
     public void sendGpioValues(String sequence) {
         for (int i = 0; i < solenoids.size(); i++) {
             try {
-                solenoids.get(i).setValue((int) sequence.charAt(i) == 1);
+                solenoids.get(i).setValue((int) sequence.charAt(i) == '1');
             } catch (IOException error) {
                 Timber.e(error, "There was an error configuring GPIO pins");
             }
