@@ -2,9 +2,9 @@
 
 # BrailleBox
 
-![alt text](brailleBox.png)
+BrailleBox is a news reader for the visually impaired that fetches the latest news article from news.api and displays it on a refreshable braille display.
 
-BrailleBox is a news reader for the visually impaired. 
+![alt text](brailleBox.png)
 
 # What it's made of
 
@@ -24,3 +24,5 @@ The great thing is that this list isn’t too extensive and all of these compone
 And with the electronically components from this put together into a circuit, the schematics for the complete circuit isn’t too complex either:
 
 ![alt text](schematics.png)
+
+You can read more about how the box was built here: https://medium.com/exploring-android/braillebox-building-a-braille-news-reader-with-android-things-f848fe6de596
