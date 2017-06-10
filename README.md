@@ -1,14 +1,12 @@
 [![Build Status](https://travis-ci.org/hitherejoe/BrailleBox.svg?branch=master)](https://travis-ci.org/hitherejoe/BrailleBox)
 
 # BrailleBox
-------------
 
 ![alt text](brailleBox.png)
 
 BrailleBox is a news reader for the visually impaired. 
 
 # What it's made of
--------------------
 
 - A raspberry pi 3
 - A breadboard
