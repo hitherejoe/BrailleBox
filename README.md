@@ -8,7 +8,7 @@ BrailleBox is a news reader for the visually impaired that fetches the latest ne
 
 # What it's made of
 
-- A raspberry pi 3
+- A raspberry pi 3 with Android Things
 - A breadboard
 - A project box (mine is sized 150 x 80 x 50 — make sure your breadboard fits in here if you want it to!)
 - 5v Solenoid x 6
